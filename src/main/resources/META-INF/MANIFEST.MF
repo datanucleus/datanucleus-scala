@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: datanucleus-scala
+Bundle-SymbolicName: org.datanucleus.scala
+Bundle-Version: 1.0.0
+

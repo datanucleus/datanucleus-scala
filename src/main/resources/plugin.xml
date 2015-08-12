@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<plugin id="org.datanucleus.scala" name="DataNucleus Scala plugin" provider-name="DataNucleus">
+
+    <extension point="org.datanucleus.java_type">
+        <java-type name="scala.Option" dfg="true" container-handler="org.datanucleus.scala.OptionHandler"/>
+    </extension>
+    
+    <extension point="org.datanucleus.store.rdbms.java_mapping">
+        <mapping java-type="scala.Option" mapping-class="org.datanucleus.store.rdbms.mapping.java.SingleCollectionMapping"/>
+    </extension>
+</plugin>
