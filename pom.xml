@@ -163,6 +163,7 @@
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-rdbms</artifactId>
 			<version>(${dn.version},)</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
