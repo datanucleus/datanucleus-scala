@@ -5,6 +5,7 @@ import scala.collection.JavaConverters._
 import javax.jdo.ObjectState
 import javax.jdo.JDOHelper
 import javax.jdo.JDOObjectNotFoundException
+import javax.jdo.JDODataStoreException
 import org.datanucleus.scala.test.samples._
 import org.datanucleus.store.types.SCO
 import org.datanucleus.scala.test.BaseSpec
@@ -208,4 +209,47 @@ class OptionSpec extends BaseSpec with UnidirectionalSamples {
       pm.makePersistent(eph)
     }
   }
+  
+  "it should fail when null is used for non-Optional[FCO] fields" in {
+    transactional {
+      val person = newSamplePerson()
+      
+      person.address = null
+      
+      pm.makePersistent(person)
+      
+      val e = intercept[JDODataStoreException] {
+        pm.flush()
+      }
+      
+      assert (e.getMessage.contains("NULL not allowed for column"))
+    }
+  }
+  
+  "it should fail when null is used for non-Optional[SCO] fields" in {
+    transactional {
+      val person = newSamplePerson()
+      
+      person.name = null
+      
+      pm.makePersistent(person)
+      
+      val e = intercept[JDODataStoreException] {
+        pm.flush()
+      }
+      
+      assert (e.getMessage.contains("NULL not allowed for column"))
+    }
+  }
+  
+  "it should allow null on Optional fields" in {
+    transactional {
+      val person = newSamplePerson()
+      
+ 		  person.billingAddress = null
+      pm.makePersistent(person)
+      
+    }
+  }
+  
 }
