@@ -8,6 +8,7 @@ class EmbeddedPersonHolder(
   var ownField:String,
   @persistent(embeddedElement="true")
   var person:Option[Person])
+  
 @PersistenceCapable
 class EmbeddedSimplePersonHolder(
   var ownField:String,
