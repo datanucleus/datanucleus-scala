@@ -216,9 +216,8 @@ class OptionSpec extends BaseSpec with UnidirectionalSamples {
       
       person.address = null
       
-      pm.makePersistent(person)
-      
       val e = intercept[JDODataStoreException] {
+        pm.makePersistent(person)
         pm.flush()
       }
       
@@ -232,9 +231,8 @@ class OptionSpec extends BaseSpec with UnidirectionalSamples {
       
       person.name = null
       
-      pm.makePersistent(person)
-      
       val e = intercept[JDODataStoreException] {
+        pm.makePersistent(person)
         pm.flush()
       }
       
