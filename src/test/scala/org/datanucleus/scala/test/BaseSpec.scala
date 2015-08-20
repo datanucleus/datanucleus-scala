@@ -56,9 +56,9 @@ abstract class BaseSpec extends org.scalatest.FreeSpec
   def transactional[T](code: => T): T = {
     val curTx = pm.currentTransaction
     try {
-      if (!curTx.isActive()) curTx.begin()
+      val joined = if (curTx.isActive()) { true } else { curTx.begin(); false }
       val result = code
-      if (curTx.isActive()) curTx.commit()
+      if (!joined && curTx.isActive()) curTx.commit()
       result
     } catch {
       case ex: Exception =>
