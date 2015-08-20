@@ -10,8 +10,8 @@ import org.datanucleus.store.types.containers.CollectionHandler
 class ScalaOptionHandler
     extends CollectionHandler[Option[Object]] {
 
-  override def newContainer(): Option[Object] = Option.empty
-  override def newContainer(elements: Object*): Option[Object] = Option(elements.head)
+  override def newContainer(mmd: AbstractMemberMetaData): Option[Object] = Option.empty
+  override def newContainer(mmd: AbstractMemberMetaData, elements: Object*): Option[Object] = Option(elements.head)
 
   override def getAdapter(option: Option[Object]): OptionAdapter = new OptionAdapter(option)
 

@@ -1,5 +1,7 @@
 package org.datanucleus.scala;
 
+import org.datanucleus.metadata.AbstractMemberMetaData;
+
 import scala.Option;
 
 /**
@@ -7,8 +9,9 @@ import scala.Option;
  * Once this issue is solved the ScalaOptionHandler class can be used.
  */
 public class OptionHandler extends ScalaOptionHandler {
+
 	@Override
-	public Option<Object> newContainer(Object... elements) {
+	public Option<Object> newContainer(AbstractMemberMetaData mmd, Object... elements) {
 		return Option.apply(elements[0]);
 	}
 }
