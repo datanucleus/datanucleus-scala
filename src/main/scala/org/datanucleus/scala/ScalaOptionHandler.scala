@@ -14,9 +14,7 @@ class ScalaOptionHandler
   override def newContainer(mmd: AbstractMemberMetaData, elements: Object*): Option[Object] = Option(elements.head)
 
   override def getAdapter(option: Option[Object]): OptionAdapter = new OptionAdapter(option)
-
-  override def populateMetaData(mmgr: MetaDataManager, mmd: AbstractMemberMetaData) = {
-    super.populateMetaData(mmgr, mmd)
+  override def populateMetaData(clr: ClassLoaderResolver, primary: ClassLoader, mmgr: MetaDataManager, mmd: AbstractMemberMetaData) = {
 
     mmd.getCollection.setSingleElement(true)
 
@@ -32,6 +30,7 @@ class ScalaOptionHandler
       mmd.addColumn(colmd)
     }
 
+    super.populateMetaData(clr, primary, mmgr, mmd)
   }
 
   override def isDefaultFetchGroup(clr: ClassLoaderResolver, mmgr: MetaDataManager, mmd: AbstractMemberMetaData) = {
