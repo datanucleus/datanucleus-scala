@@ -141,6 +141,8 @@ abstract class BaseSpec extends org.scalatest.FreeSpec
   }
 
   def stateOf(obj: Any) = JDOHelper.getObjectState(obj)
+  
+  def idOf(obj:Any) = JDOHelper.getObjectId(obj)
 
   def metaDataOf(isntance: Object): AbstractClassMetaData = {
     val mdMngr = ec.getMetaDataManager()
