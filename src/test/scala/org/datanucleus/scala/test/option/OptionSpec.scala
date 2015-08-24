@@ -180,12 +180,12 @@ class OptionSpec extends BaseSpec with UnidirectionalSamples {
 
         addressDependent = holder.addressDependent.get
         pm.deletePersistent(holder)
-        
+
         assert(stateOf(addressDependent) == stateOf(holder))
-        
+
         ids
       }
-    
+
     clearCaches()
 
     transactional {
@@ -209,45 +209,73 @@ class OptionSpec extends BaseSpec with UnidirectionalSamples {
       pm.makePersistent(eph)
     }
   }
-  
-  "it should fail when null is used for non-Optional[FCO] fields" in {
+
+  "it should fail when null is used for non-Option[FCO] fields" in {
     transactional {
       val person = newSamplePerson()
-      
+
       person.address = null
-      
+
       val e = intercept[JDODataStoreException] {
         pm.makePersistent(person)
         pm.flush()
       }
-      
-      assert (e.getMessage.contains("NULL not allowed for column"))
+
+      assert(e.getMessage.contains("NULL not allowed for column"))
     }
   }
-  
-  "it should fail when null is used for non-Optional[SCO] fields" in {
+
+  "it should fail when null is used for non-Option[SCO] fields" in {
     transactional {
       val person = newSamplePerson()
-      
+
       person.name = null
-      
+
       val e = intercept[JDODataStoreException] {
         pm.makePersistent(person)
         pm.flush()
       }
-      
-      assert (e.getMessage.contains("NULL not allowed for column"))
+
+      assert(e.getMessage.contains("NULL not allowed for column"))
     }
   }
-  
-  "it should allow null on Optional fields" in {
+
+  "it should allow null on Option fields" in {
     transactional {
       val person = newSamplePerson()
-      
- 		  person.billingAddress = null
+
+      person.billingAddress = null
       pm.makePersistent(person)
-      
     }
   }
-  
+
+  "it should refresh Option fields" in {
+    
+    val person = newSamplePerson()
+
+    person.billingAddress = Some(newSampleBillingAddress())
+    person.surname = Some("refresh surname 1")
+    
+    val personId = persist(person)
+    
+    transactional {
+      val addressGroup = pm.getFetchGroup(classOf[Person], "AddressGroup")
+      addressGroup.addMember("address").addMember("billingAddress")
+      pm.getFetchPlan().addGroup("AddressGroup")
+
+      val loadedPerson = pm.getObjectById(personId).asInstanceOf[Person]
+      val addressId = idOf(loadedPerson.billingAddress)
+      val refreshSurname2 = "refresh surname 2"
+      
+      // Delete the billing address and update surname using SQL
+      pm.newQuery("javax.jdo.query.SQL",
+        s"UPDATE PERSON SET BILLINGADDRESS_ID_OID = null, SURNAME = '$refreshSurname2' where ID = $personId")
+        .execute()
+      
+      pm.refresh(loadedPerson)
+      
+      assert(loadedPerson.surname == Some(refreshSurname2))
+      assert(loadedPerson.billingAddress == None)
+    }
+  }
 }
