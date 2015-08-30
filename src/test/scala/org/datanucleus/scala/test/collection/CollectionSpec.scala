@@ -7,7 +7,7 @@ import org.datanucleus.scala.test.BaseSpec
 
 class CollectionSpec extends BaseSpec {
 
-  "it should persit Collection" in {
+  "it should persit Collection" ignore {
 
     val a = new Item("a")
     val b = new Item("b")
