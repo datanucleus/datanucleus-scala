@@ -43,6 +43,7 @@ buildNumber.properties
 
 #SHITTY output not in target directory
 build.log
+*.log
 /.cache
 /.cache-main
 /.cache-tests
