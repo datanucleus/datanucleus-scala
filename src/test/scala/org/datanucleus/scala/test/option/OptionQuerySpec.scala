@@ -6,7 +6,7 @@ import javax.jdo.ObjectState
 import javax.jdo.JDOHelper
 import org.datanucleus.store.types.SCO
 import org.datanucleus.api.jdo.NucleusJDOHelper
-import org.datanucleus.scala.test.samples._
+import org.datanucleus.samples.scala.test._
 import org.datanucleus.scala.test.BaseSpec
 
 class OptionQuerySpec extends BaseSpec with UnidirectionalSamples {
@@ -195,7 +195,7 @@ class OptionQuerySpec extends BaseSpec with UnidirectionalSamples {
     clearCaches()
 
     transactional {
-      val query = pm.newQuery(s"SELECT surname FROM org.datanucleus.scala.test.samples.Person where name == '${person.name}'")
+      val query = pm.newQuery(s"SELECT surname FROM org.datanucleus.samples.scala.test.Person where name == '${person.name}'")
       val result = query.execute().asInstanceOf[java.util.List[Object]]
 
       val surnameResult = result.asScala.head.asInstanceOf[Option[String]]
@@ -213,7 +213,7 @@ class OptionQuerySpec extends BaseSpec with UnidirectionalSamples {
     clearCaches()
 
     transactional {
-      val query = pm.newQuery(s"SELECT billingAddress FROM org.datanucleus.scala.test.samples.Person where name == '${person.name}'")
+      val query = pm.newQuery(s"SELECT billingAddress FROM org.datanucleus.samples.scala.test.Person where name == '${person.name}'")
       val result = query.execute().asInstanceOf[java.util.List[Object]]
 
       val billingAddressResult = result.asScala.head.asInstanceOf[Option[Address]]
@@ -236,7 +236,7 @@ class OptionQuerySpec extends BaseSpec with UnidirectionalSamples {
     clearCaches()
 
     transactional {
-      val query = pm.newQuery(s"SELECT count(country), country FROM org.datanucleus.scala.test.samples.Address group by country")
+      val query = pm.newQuery(s"SELECT count(country), country FROM org.datanucleus.samples.scala.test.Address group by country")
       val result = query.execute().asInstanceOf[java.util.List[Array[Object]]]
 
       val Array(count, resultCountry) = result.asScala.find {
@@ -263,7 +263,7 @@ class OptionQuerySpec extends BaseSpec with UnidirectionalSamples {
     clearCaches()
 
     transactional {
-      val query = pm.newQuery(s"SELECT count(billingAddress), billingAddress FROM org.datanucleus.scala.test.samples.Person group by billingAddress")
+      val query = pm.newQuery(s"SELECT count(billingAddress), billingAddress FROM org.datanucleus.samples.scala.test.Person group by billingAddress")
       val result = query.execute().asInstanceOf[java.util.List[Array[Object]]]
 
       val Array(count, resultAddress) = result.asScala.find {

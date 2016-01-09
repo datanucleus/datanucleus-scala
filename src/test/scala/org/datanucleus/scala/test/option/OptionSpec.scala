@@ -1,15 +1,21 @@
 package org.datanucleus.scala.test.option
 
+
 import scala.util.Random
+import java.time.LocalDate
 import scala.collection.JavaConverters._
 import javax.jdo.ObjectState
 import javax.jdo.JDOHelper
 import javax.jdo.JDOObjectNotFoundException
 import javax.jdo.JDODataStoreException
-import org.datanucleus.scala.test.samples._
+import org.datanucleus.samples.scala.test._
 import org.datanucleus.store.types.SCO
 import org.datanucleus.scala.test.BaseSpec
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 
+
+@RunWith(classOf[JUnitRunner])
 class OptionSpec extends BaseSpec with UnidirectionalSamples {
 
   "PersistenceManager should persist SCO wrapped inside Option type" in {
@@ -24,6 +30,22 @@ class OptionSpec extends BaseSpec with UnidirectionalSamples {
 
       assert(persistedPerson.name == person.name)
       assert(persistedPerson.surname == person.surname)
+    }
+  }
+  
+  "PersistenceManager should persist SCO(converter based) wrapped inside Option type" in {
+    
+    val localDate = LocalDate.now()
+    val localDateHolder = new LocalDateHolder(localDate,Some(localDate))
+    val id = persist(localDateHolder)
+
+    clearCaches()
+
+    transactional {
+      val persistedlocalDateHolder = pm.getObjectById(id).asInstanceOf[LocalDateHolder]
+
+      assert(persistedlocalDateHolder.localDate == localDateHolder.localDate)
+      assert(persistedlocalDateHolder.optionLocalDate == localDateHolder.optionLocalDate)
     }
   }
 

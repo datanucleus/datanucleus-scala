@@ -6,7 +6,7 @@ import scala.collection.JavaConverters._
 import javax.jdo.ObjectState._
 import javax.jdo.JDOHelper
 import javax.jdo.JDOObjectNotFoundException
-import org.datanucleus.scala.test.samples._
+import org.datanucleus.samples.scala.test._
 import org.datanucleus.store.types.SCO
 import org.datanucleus.scala.test.BaseSpec
 

@@ -14,6 +14,7 @@
 	<name>DataNucleus Scala plugin</name>
 	<description>Specific support for Scala</description>
 
+
 	<scm>
 		<connection>scm:git:git@github.com:datanucleus/${project.artifactId}.git</connection>
 		<developerConnection>scm:git:git@github.com:datanucleus/${project.artifactId}.git</developerConnection>
@@ -22,8 +23,8 @@
 
 	<properties>
 		<encoding>UTF-8</encoding>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<scala.version>2.11</scala.version>
 		<scala.minor.version>7</scala.minor.version>
 		<!-- Requires DN 5 -->
@@ -77,13 +78,15 @@
 			<plugin>
 				<groupId>org.datanucleus</groupId>
 				<artifactId>datanucleus-maven-plugin</artifactId>
-				<version>4.0.1</version>
+				<version>4.0.2</version>
 				<configuration>
 					<api>JDO</api>
 					<persistenceUnitName>ScalaSamples</persistenceUnitName>
 					<fork>false</fork>
-					<verbose>false</verbose>
+					<verbose>true</verbose>
+					<alwaysDetachable>true</alwaysDetachable>
 					<metadataDirectory>${project.build.directory}/test-classes</metadataDirectory>
+					<quiet>false</quiet>
 				</configuration>
 				<executions>
 					<execution>
@@ -134,6 +137,16 @@
 			<artifactId>scala-library</artifactId>
 			<version>${scala.version}.${scala.minor.version}</version>
 		</dependency>
+		<!-- <dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-reflect</artifactId>
+			<version>${scala.version}.${scala.minor.version}</version>
+		</dependency> -->
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scalap</artifactId>
+			<version>${scala.version}.${scala.minor.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>javax.jdo</artifactId>
@@ -151,6 +164,19 @@
 			<artifactId>datanucleus-api-jdo</artifactId>
 			<version>(${dn.version},)</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.datanucleus</groupId>
+			<artifactId>datanucleus-rdbms</artifactId>
+			<version>(${dn.version},)</version>
+			<optional>true</optional>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.datanucleus</groupId>
+			<artifactId>datanucleus-java8</artifactId>
+			<version>(${dn.version},)</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.scalatest</groupId>
@@ -159,12 +185,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.datanucleus</groupId>
-			<artifactId>datanucleus-rdbms</artifactId>
-			<version>(${dn.version},)</version>
-			<scope>test</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -184,6 +204,7 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.8</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>

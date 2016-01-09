@@ -1,8 +1,8 @@
 package org.datanucleus.scala.test.option
 
 import org.datanucleus.scala.test.BaseSpec
-import org.datanucleus.scala.test.samples.bidirectional.option_both_sides.Account
-import org.datanucleus.scala.test.samples.bidirectional.option_both_sides.User
+import org.datanucleus.samples.scala.test.bidirectional.option_both_sides.Account
+import org.datanucleus.samples.scala.test.bidirectional.option_both_sides.User
 
 import javax.jdo.JDOUserException
 

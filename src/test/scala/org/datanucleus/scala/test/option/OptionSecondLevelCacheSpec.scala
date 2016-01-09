@@ -1,8 +1,8 @@
 package org.datanucleus.scala.test.option
 
 import javax.jdo.JDOHelper
-import org.datanucleus.scala.test.samples.Person
-import org.datanucleus.scala.test.samples.Person
+import org.datanucleus.samples.scala.test.Person
+import org.datanucleus.samples.scala.test.Person
 import scala.collection.JavaConverters._
 import org.datanucleus.scala.test.BaseSpec
 

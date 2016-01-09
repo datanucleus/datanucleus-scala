@@ -2,9 +2,9 @@ package org.datanucleus.scala.test.option
 
 import java.util.Date
 
-import org.datanucleus.scala.test.samples.Address
-import org.datanucleus.scala.test.samples.Person
-import org.datanucleus.scala.test.samples.Task
+import org.datanucleus.samples.scala.test.Address
+import org.datanucleus.samples.scala.test.Person
+import org.datanucleus.samples.scala.test.Task
 
 import javax.jdo.annotations.PersistenceCapable
 

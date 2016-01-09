@@ -4,11 +4,39 @@
     version="1.0">
 
     <persistence-unit name="ScalaSamples">
-        <!-- <class>org.datanucleus.scala.collection.Item</class>
-        <class>org.datanucleus.scala.collection.Invoice</class> -->
-        <!-- <class>org.datanucleus.scala.test.samples.Person</class>
-        <class>org.datanucleus.scala.test.samples.Address</class> -->
-        <!-- <exclude-unlisted-classes/> -->
+
+<class>org.datanucleus.samples.scala.test.OptionAddressDFGHolder</class>
+<class>org.datanucleus.samples.scala.test.OptionAddressDependentHolder</class> 
+<class>org.datanucleus.samples.scala.test.Address</class> 
+<class>org.datanucleus.samples.scala.test.BooleanHolder</class>
+<class>org.datanucleus.samples.scala.test.LocalDateHolder</class>
+<class>org.datanucleus.samples.scala.test.EmailAddress</class>
+<class>org.datanucleus.samples.scala.test.EmailAddressHolder</class>
+<class>org.datanucleus.samples.scala.test.EmailAddressJoinListHolder</class>
+<class>org.datanucleus.samples.scala.test.regular.StringContainerHolder</class>
+<class>org.datanucleus.samples.scala.test.Person</class>
+<class>org.datanucleus.samples.scala.test.EmbeddedPersonHolder</class>
+<class>org.datanucleus.samples.scala.test.bidirectional.option_both_sides.Account</class>
+<class>org.datanucleus.samples.scala.test.bidirectional.option_both_sides.User</class>
+<class>org.datanucleus.samples.scala.test.Task</class>
+
+<!-- 
+<class>org.datanucleus.samples.scala.test.regular.MyDepartment</class>
+<class>org.datanucleus.samples.scala.test.regular.MyUser</class>
+<class>org.datanucleus.samples.scala.test.regular.MyBank</class>
+<class>org.datanucleus.samples.scala.test.regular.MyAccount</class>
+<class>org.datanucleus.samples.scala.test.regular.MyCustomer</class>
+<class>org.datanucleus.samples.scala.test.regular.MyPerson</class>
+<class>org.datanucleus.samples.scala.test.regular.MyCompany</class>
+<class>org.datanucleus.samples.scala.test.regular.MyPet</class>
+<class>org.datanucleus.samples.scala.test.Email</class>
+<class>org.datanucleus.samples.scala.test.bidirectional.option_owner_side.Departament</class>
+<class>org.datanucleus.samples.scala.test.bidirectional.option_owner_side.Company</class>
+<class>org.datanucleus.samples.scala.test.bidirectional.option_mapped_side.Bank</class>
+<class>org.datanucleus.samples.scala.test.bidirectional.option_mapped_side.Pet</class>
+<class>org.datanucleus.samples.scala.test.bidirectional.option_mapped_side.Customer</class>
+<class>org.datanucleus.samples.scala.test.bidirectional.option_mapped_side.Person</class>
+-->
         <properties>
             <!-- Update these datastore details if different -->
             <property name="javax.jdo.PersistenceManagerFactoryClass" value="org.datanucleus.api.jdo.JDOPersistenceManagerFactory"/>
