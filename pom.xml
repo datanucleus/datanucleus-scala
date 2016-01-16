@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>org.datanucleus</groupId>
 		<artifactId>datanucleus-maven-parent</artifactId>
-		<version>4.0.5</version>
+		<version>5.0.0</version>
 	</parent>
 
 	<artifactId>datanucleus-scala</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>5.0.0-m1-SNAPSHOT</version>
 
 	<name>DataNucleus Scala plugin</name>
 	<description>Specific support for Scala</description>
@@ -23,11 +23,8 @@
 
 	<properties>
 		<encoding>UTF-8</encoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
 		<scala.version>2.11</scala.version>
 		<scala.minor.version>7</scala.minor.version>
-		<!-- Requires DN 5 -->
 		<dn.version>4.9</dn.version>
 	</properties>
 
@@ -64,8 +61,7 @@
 						<id>default-testCompile</id>
 						<phase>none</phase>
 					</execution>
-					<!-- Workaround for OptionHandler.java, which must be compiled after 
-						the Scala -->
+					<!-- Workaround for OptionHandler.java, which must be compiled after the Scala -->
 					<execution>
 						<id>compile-after-scala</id>
 						<phase>compile</phase>
