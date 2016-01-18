@@ -25,7 +25,9 @@
 		<encoding>UTF-8</encoding>
 		<scala.version>2.11</scala.version>
 		<scala.minor.version>7</scala.minor.version>
-		<dn.version>4.9</dn.version>
+		<dn.core.version>5.0.0-m1</dn.core.version>
+		<dn.api.jdo.version>5.0.0-m1</dn.api.jdo.version>
+		<dn.rdbms.version>5.0.0-m1</dn.rdbms.version>
 	</properties>
 
 	<build>
@@ -151,27 +153,20 @@
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-core</artifactId>
-			<version>(${dn.version},)</version>
+			<version>[${dn.core.version},)</version>
 		</dependency>
 
 		<dependency>
 			<!-- For annotations goodies -->
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-api-jdo</artifactId>
-			<version>(${dn.version},)</version>
+			<version>(${dn.api.jdo.version},)</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-rdbms</artifactId>
-			<version>(${dn.version},)</version>
+			<version>(${dn.rdbms.version},)</version>
 			<optional>true</optional>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.datanucleus</groupId>
-			<artifactId>datanucleus-java8</artifactId>
-			<version>(${dn.version},)</version>
 		</dependency>
 
 		<dependency>
