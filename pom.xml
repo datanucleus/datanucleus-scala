@@ -75,7 +75,7 @@
 			<plugin>
 				<groupId>org.datanucleus</groupId>
 				<artifactId>datanucleus-maven-plugin</artifactId>
-				<version>4.0.2</version>
+				<version>4.0.5</version>
 				<configuration>
 					<api>JDO</api>
 					<persistenceUnitName>ScalaSamples</persistenceUnitName>
@@ -147,7 +147,7 @@
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>javax.jdo</artifactId>
-			<version>[3.0, )</version>
+			<version>[3.2.0-m5, )</version>
 		</dependency>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
