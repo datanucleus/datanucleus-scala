@@ -1,200 +1,200 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.datanucleus</groupId>
-		<artifactId>datanucleus-maven-parent</artifactId>
-		<version>5.0.0</version>
-	</parent>
+    <parent>
+        <groupId>org.datanucleus</groupId>
+        <artifactId>datanucleus-maven-parent</artifactId>
+        <version>5.0.0</version>
+    </parent>
 
-	<artifactId>datanucleus-scala</artifactId>
-	<version>5.0.0-release-SNAPSHOT</version>
+    <artifactId>datanucleus-scala</artifactId>
+    <version>5.0.0-release-SNAPSHOT</version>
 
-	<name>DataNucleus Scala plugin</name>
-	<description>Specific support for Scala</description>
-
-
-	<scm>
-		<connection>scm:git:git@github.com:datanucleus/${project.artifactId}.git</connection>
-		<developerConnection>scm:git:git@github.com:datanucleus/${project.artifactId}.git</developerConnection>
-		<url>https://github.com/datanucleus/${project.artifactId}</url>
-	</scm>
-
-	<properties>
-		<encoding>UTF-8</encoding>
-		<scala.version>2.11</scala.version>
-		<scala.minor.version>7</scala.minor.version>
-		<dn.core.version>5.0.0-m1</dn.core.version>
-		<dn.api.jdo.version>5.0.0-m1</dn.api.jdo.version>
-		<dn.rdbms.version>5.0.0-m1</dn.rdbms.version>
-	</properties>
-
-	<build>
-		<sourceDirectory>src/main/scala</sourceDirectory>
-		<testSourceDirectory>src/test/scala</testSourceDirectory>
-		<finalName>${project.artifactId}_${scala.version}-${project.version}</finalName>
-		<plugins>
-			<plugin>
-				<groupId>net.alchim31.maven</groupId>
-				<artifactId>scala-maven-plugin</artifactId>
-				<version>3.2.1</version>
-				<configuration>
-					<scalaCompatVersion>${scala.version}</scalaCompatVersion>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>compile</goal>
-							<goal>testCompile</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<executions>
-					<!-- Disable default compile -->
-					<execution>
-						<id>default-compile</id>
-						<phase>none</phase>
-					</execution>
-					<execution>
-						<id>default-testCompile</id>
-						<phase>none</phase>
-					</execution>
-					<!-- Workaround for OptionHandler.java, which must be compiled after the Scala -->
-					<execution>
-						<id>compile-after-scala</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.datanucleus</groupId>
-				<artifactId>datanucleus-maven-plugin</artifactId>
-				<version>4.0.5</version>
-				<configuration>
-					<api>JDO</api>
-					<persistenceUnitName>ScalaSamples</persistenceUnitName>
-					<fork>false</fork>
-					<verbose>true</verbose>
-					<alwaysDetachable>true</alwaysDetachable>
-					<metadataDirectory>${project.build.directory}/test-classes</metadataDirectory>
-					<quiet>false</quiet>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>test-compile</phase>
-						<goals>
-							<goal>enhance</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<!-- disable surefire -->
-				<artifactId>maven-surefire-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>default-test</id>
-						<phase>none</phase>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.scalatest</groupId>
-				<artifactId>scalatest-maven-plugin</artifactId>
-				<version>1.0</version>
-				<configuration>
-					<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
-					<junitxml>.</junitxml>
-				</configuration>
-				<executions>
-					<execution>
-						<id>test</id>
-						<goals>
-							<goal>test</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.scala-lang</groupId>
-			<artifactId>scala-library</artifactId>
-			<version>${scala.version}.${scala.minor.version}</version>
-		</dependency>
-		<!-- <dependency>
-			<groupId>org.scala-lang</groupId>
-			<artifactId>scala-reflect</artifactId>
-			<version>${scala.version}.${scala.minor.version}</version>
-		</dependency> -->
-		<dependency>
-			<groupId>org.scala-lang</groupId>
-			<artifactId>scalap</artifactId>
-			<version>${scala.version}.${scala.minor.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.datanucleus</groupId>
-			<artifactId>javax.jdo</artifactId>
-			<version>[3.2.0-m5, )</version>
-		</dependency>
-		<dependency>
-			<groupId>org.datanucleus</groupId>
-			<artifactId>datanucleus-core</artifactId>
-			<version>[${dn.core.version},)</version>
-		</dependency>
-
-		<dependency>
-			<!-- For annotations goodies -->
-			<groupId>org.datanucleus</groupId>
-			<artifactId>datanucleus-api-jdo</artifactId>
-			<version>(${dn.api.jdo.version},)</version>
-		</dependency>
-		<dependency>
-			<groupId>org.datanucleus</groupId>
-			<artifactId>datanucleus-rdbms</artifactId>
-			<version>(${dn.rdbms.version},)</version>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>org.scalatest</groupId>
-			<artifactId>scalatest_${scala.version}</artifactId>
-			<version>2.2.4</version>
-			<scope>test</scope>
-		</dependency>
+    <name>DataNucleus Scala plugin</name>
+    <description>Specific support for Scala</description>
 
 
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.3.172</version>
-			<scope>test</scope>
-		</dependency>
+    <scm>
+        <connection>scm:git:git@github.com:datanucleus/${project.artifactId}.git</connection>
+        <developerConnection>scm:git:git@github.com:datanucleus/${project.artifactId}.git</developerConnection>
+        <url>https://github.com/datanucleus/${project.artifactId}</url>
+    </scm>
 
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.28</version>
-			<scope>test</scope>
-		</dependency>
+    <properties>
+        <encoding>UTF-8</encoding>
+        <scala.version>2.11</scala.version>
+        <scala.minor.version>7</scala.minor.version>
+        <dn.core.version>5.0.0-m1</dn.core.version>
+        <dn.api.jdo.version>5.0.0-m1</dn.api.jdo.version>
+        <dn.rdbms.version>5.0.0-m1</dn.rdbms.version>
+    </properties>
 
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.8</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+    <build>
+        <sourceDirectory>src/main/scala</sourceDirectory>
+        <testSourceDirectory>src/test/scala</testSourceDirectory>
+        <finalName>${project.artifactId}_${scala.version}-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <scalaCompatVersion>${scala.version}</scalaCompatVersion>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <executions>
+                    <!-- Disable default compile -->
+                    <execution>
+                        <id>default-compile</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>default-testCompile</id>
+                        <phase>none</phase>
+                    </execution>
+                    <!-- Workaround for OptionHandler.java, which must be compiled after the Scala -->
+                    <execution>
+                        <id>compile-after-scala</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.datanucleus</groupId>
+                <artifactId>datanucleus-maven-plugin</artifactId>
+                <version>4.0.5</version>
+                <configuration>
+                    <api>JDO</api>
+                    <persistenceUnitName>ScalaSamples</persistenceUnitName>
+                    <fork>false</fork>
+                    <verbose>true</verbose>
+                    <alwaysDetachable>true</alwaysDetachable>
+                    <metadataDirectory>${project.build.directory}/test-classes</metadataDirectory>
+                    <quiet>false</quiet>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <!-- disable surefire -->
+                <artifactId>maven-surefire-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-test</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest-maven-plugin</artifactId>
+                <version>1.0</version>
+                <configuration>
+                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+                    <junitxml>.</junitxml>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}.${scala.minor.version}</version>
+        </dependency>
+        <!-- <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-reflect</artifactId>
+            <version>${scala.version}.${scala.minor.version}</version>
+        </dependency> -->
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scalap</artifactId>
+            <version>${scala.version}.${scala.minor.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.datanucleus</groupId>
+            <artifactId>javax.jdo</artifactId>
+            <version>[3.2.0-m5, )</version>
+        </dependency>
+        <dependency>
+            <groupId>org.datanucleus</groupId>
+            <artifactId>datanucleus-core</artifactId>
+            <version>[${dn.core.version},)</version>
+        </dependency>
+
+        <dependency>
+            <!-- For annotations goodies -->
+            <groupId>org.datanucleus</groupId>
+            <artifactId>datanucleus-api-jdo</artifactId>
+            <version>(${dn.api.jdo.version},)</version>
+        </dependency>
+        <dependency>
+            <groupId>org.datanucleus</groupId>
+            <artifactId>datanucleus-rdbms</artifactId>
+            <version>(${dn.rdbms.version},)</version>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_${scala.version}</artifactId>
+            <version>2.2.4</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.3.172</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.28</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.8</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>
