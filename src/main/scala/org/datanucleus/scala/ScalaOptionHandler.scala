@@ -4,6 +4,7 @@ import org.datanucleus.ClassLoaderResolver
 import org.datanucleus.metadata.AbstractMemberMetaData
 import org.datanucleus.metadata.ColumnMetaData
 import org.datanucleus.metadata.MetaDataManager
+import org.datanucleus.store.types.TypeManager
 import org.datanucleus.store.types.containers.CollectionHandler
 import org.datanucleus.enhancement.Persistable
 import org.datanucleus.enhancer.EnhancementHelper
@@ -19,7 +20,7 @@ class ScalaOptionHandler
   override def newContainer(mmd: AbstractMemberMetaData, elements: Object*): Option[Object] = Option(elements.head)
 
   override def getAdapter(option: Option[Object]): OptionAdapter = new OptionAdapter(option)
-  override def populateMetaData(clr: ClassLoaderResolver, primary: ClassLoader, mmgr: MetaDataManager, mmd: AbstractMemberMetaData) = {
+  override def populateMetaData(clr: ClassLoaderResolver, primary: ClassLoader, mmd: AbstractMemberMetaData) = {
 
     _prm = primary
     _clr = clr
@@ -37,7 +38,7 @@ class ScalaOptionHandler
       mmd.addColumn(colmd)
     }
 
-    super.populateMetaData(clr, primary, mmgr, mmd)
+    super.populateMetaData(clr, primary, mmd)
   }
 
   /** Java reflection doesn't work in some scenarios such as using scala.Boolean
@@ -57,11 +58,9 @@ class ScalaOptionHandler
 
   }
 
-  override def isDefaultFetchGroup(clr: ClassLoaderResolver, mmgr: MetaDataManager, mmd: AbstractMemberMetaData) = {
+  override def isDefaultFetchGroup(clr: ClassLoaderResolver, typeMgr: TypeManager, mmd: AbstractMemberMetaData) = {
     val elementTypeName = mmd.getCollection.getElementType
     val elementType = clr.classForName(elementTypeName);
-
-    val typeMgr = mmgr.getNucleusContext.getTypeManager
 
     typeMgr.isDefaultFetchGroup(elementType)
   }
