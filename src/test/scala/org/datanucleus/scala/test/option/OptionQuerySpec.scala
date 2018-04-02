@@ -1,6 +1,7 @@
 package org.datanucleus.scala.test.option
 
-import scala.util.Random
+import java.time.LocalDate
+
 import scala.collection.JavaConverters._
 import javax.jdo.ObjectState
 import javax.jdo.JDOHelper
@@ -270,13 +271,83 @@ class OptionQuerySpec extends BaseSpec with UnidirectionalSamples {
         case Array(_, Some(billingAddressGroup: Address)) if billingAddressGroup.street == billingAddressToGroup.street => true
         case _ => false;
       }.get
-      
-      
-      result.asScala.contains(Array(2,Some(billingAddressToGroup)));
+
+
+      result.asScala.toArray.sameElements(Array(2, Some(billingAddressToGroup)))
 
       assert(count === 2)
       assert(resultAddress.asInstanceOf[Option[Address]].value.street === billingAddressToGroup.street)
     }
   }
 
+  "it should support query using methods in the filter for Option[SCO] - LocalDate" in {
+
+    val localDate = randomLocalDate()
+    val localDateHolder = new LocalDateHolder(localDate, Some(localDate))
+
+
+    persist(localDateHolder)
+
+    clearCaches()
+
+    transactional {
+
+      val query = pm.newQuery(classOf[LocalDateHolder])
+        .filter(s"optionLocalDate.getYear() == :year")
+
+      val result = query
+        .setNamedParameters(Map("year" -> localDate.getYear).asJava)
+        .executeUnique()
+
+      assert(result.localDate === localDateHolder.localDate)
+      assert(result.optionLocalDate === localDateHolder.optionLocalDate)
+
+    }
+  }
+
+  "it should support query using methods in the filter for Option[SCO] - String" in {
+
+    val str = randomString()
+    val stringHolder = new StringHolder(str, Some(str))
+
+    persist(stringHolder)
+
+    clearCaches()
+
+    transactional {
+
+      val query = pm.newQuery(classOf[StringHolder])
+        .filter("optionStr.startsWith(:prefix)")
+        .setParameters(str)
+
+      val result = query.executeUnique()
+
+      assert(result.optionStr.get === str)
+
+    }
+  }
+
+  "it should support query using methods in the result clause from Option[SCO]" in {
+
+    val str = randomString()
+    val stringHolder = new StringHolder(str, Some(str))
+
+    val id = persist(stringHolder).asInstanceOf[Object]
+
+    clearCaches()
+
+    transactional {
+
+      val query = pm.newQuery(classOf[StringHolder])
+        .filter(s"optionStr == :str")
+        .setParameters(Some(str))
+
+      query.setResult("optionStr.substring(0,1)")
+
+      val result = query.executeResultUnique(classOf[String])
+
+      assert(result === str.substring(0, 1))
+
+    }
+  }
 }

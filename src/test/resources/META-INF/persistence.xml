@@ -1,80 +1,81 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
-    version="1.0">
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+             version="1.0">
 
     <persistence-unit name="ScalaSamples">
 
-<class>org.datanucleus.samples.scala.test.OptionAddressDFGHolder</class>
-<class>org.datanucleus.samples.scala.test.OptionAddressDependentHolder</class> 
-<class>org.datanucleus.samples.scala.test.Address</class> 
-<class>org.datanucleus.samples.scala.test.BooleanHolder</class>
-<class>org.datanucleus.samples.scala.test.LocalDateHolder</class>
-<class>org.datanucleus.samples.scala.test.EmailAddress</class>
-<class>org.datanucleus.samples.scala.test.EmailAddressHolder</class>
-<class>org.datanucleus.samples.scala.test.EmailAddressJoinListHolder</class>
-<class>org.datanucleus.samples.scala.test.regular.StringContainerHolder</class>
-<class>org.datanucleus.samples.scala.test.Person</class>
-<class>org.datanucleus.samples.scala.test.EmbeddedPersonHolder</class>
-<class>org.datanucleus.samples.scala.test.bidirectional.option_both_sides.Account</class>
-<class>org.datanucleus.samples.scala.test.bidirectional.option_both_sides.User</class>
-<class>org.datanucleus.samples.scala.test.Task</class>
-
-<!-- 
-<class>org.datanucleus.samples.scala.test.regular.MyDepartment</class>
-<class>org.datanucleus.samples.scala.test.regular.MyUser</class>
-<class>org.datanucleus.samples.scala.test.regular.MyBank</class>
-<class>org.datanucleus.samples.scala.test.regular.MyAccount</class>
-<class>org.datanucleus.samples.scala.test.regular.MyCustomer</class>
-<class>org.datanucleus.samples.scala.test.regular.MyPerson</class>
-<class>org.datanucleus.samples.scala.test.regular.MyCompany</class>
-<class>org.datanucleus.samples.scala.test.regular.MyPet</class>
-<class>org.datanucleus.samples.scala.test.Email</class>
-<class>org.datanucleus.samples.scala.test.bidirectional.option_owner_side.Departament</class>
-<class>org.datanucleus.samples.scala.test.bidirectional.option_owner_side.Company</class>
-<class>org.datanucleus.samples.scala.test.bidirectional.option_mapped_side.Bank</class>
-<class>org.datanucleus.samples.scala.test.bidirectional.option_mapped_side.Pet</class>
-<class>org.datanucleus.samples.scala.test.bidirectional.option_mapped_side.Customer</class>
-<class>org.datanucleus.samples.scala.test.bidirectional.option_mapped_side.Person</class>
--->
+        <class>org.datanucleus.samples.scala.test.OptionAddressDFGHolder</class>
+        <class>org.datanucleus.samples.scala.test.OptionAddressDependentHolder</class>
+        <class>org.datanucleus.samples.scala.test.Address</class>
+        <class>org.datanucleus.samples.scala.test.BooleanHolder</class>
+        <class>org.datanucleus.samples.scala.test.LocalDateHolder</class>
+        <class>org.datanucleus.samples.scala.test.EmailAddress</class>
+        <class>org.datanucleus.samples.scala.test.EmailAddressHolder</class>
+        <class>org.datanucleus.samples.scala.test.EmailAddressJoinListHolder</class>
+        <class>org.datanucleus.samples.scala.test.regular.StringContainerHolder</class>
+        <class>org.datanucleus.samples.scala.test.Person</class>
+        <class>org.datanucleus.samples.scala.test.EmbeddedPersonHolder</class>
+        <class>org.datanucleus.samples.scala.test.bidirectional.option_both_sides.Account</class>
+        <class>org.datanucleus.samples.scala.test.bidirectional.option_both_sides.User</class>
+        <class>org.datanucleus.samples.scala.test.Task</class>
+        <class>org.datanucleus.samples.scala.test.StringHolder</class>
+        <!--
+        <class>org.datanucleus.samples.scala.test.regular.MyDepartment</class>
+        <class>org.datanucleus.samples.scala.test.regular.MyUser</class>
+        <class>org.datanucleus.samples.scala.test.regular.MyBank</class>
+        <class>org.datanucleus.samples.scala.test.regular.MyAccount</class>
+        <class>org.datanucleus.samples.scala.test.regular.MyCustomer</class>
+        <class>org.datanucleus.samples.scala.test.regular.MyPerson</class>
+        <class>org.datanucleus.samples.scala.test.regular.MyCompany</class>
+        <class>org.datanucleus.samples.scala.test.regular.MyPet</class>
+        <class>org.datanucleus.samples.scala.test.Email</class>
+        <class>org.datanucleus.samples.scala.test.bidirectional.option_owner_side.Departament</class>
+        <class>org.datanucleus.samples.scala.test.bidirectional.option_owner_side.Company</class>
+        <class>org.datanucleus.samples.scala.test.bidirectional.option_mapped_side.Bank</class>
+        <class>org.datanucleus.samples.scala.test.bidirectional.option_mapped_side.Pet</class>
+        <class>org.datanucleus.samples.scala.test.bidirectional.option_mapped_side.Customer</class>
+        <class>org.datanucleus.samples.scala.test.bidirectional.option_mapped_side.Person</class>
+        -->
         <properties>
             <!-- Update these datastore details if different -->
-            <property name="javax.jdo.PersistenceManagerFactoryClass" value="org.datanucleus.api.jdo.JDOPersistenceManagerFactory"/>
-            
-<!--        <property name="javax.jdo.option.ConnectionURL" value="jdbc:h2:~/nucleus-scala"/>  -->
+            <property name="javax.jdo.PersistenceManagerFactoryClass"
+                      value="org.datanucleus.api.jdo.JDOPersistenceManagerFactory"/>
+
+            <!--        <property name="javax.jdo.option.ConnectionURL" value="jdbc:h2:~/nucleus-scala"/>  -->
             <property name="javax.jdo.option.ConnectionURL" value="jdbc:h2:mem:nucleus-scala"/>
             <property name="javax.jdo.option.ConnectionDriverName" value="org.h2.Driver"/>
             <property name="javax.jdo.option.ConnectionUserName" value="sa"/>
-            <property name="javax.jdo.option.ConnectionPassword" value=""/> 
+            <property name="javax.jdo.option.ConnectionPassword" value=""/>
             <!-- MySQL -->
-<!--        <property name="javax.jdo.option.ConnectionURL" value="jdbc:mysql:///nucleus"/> -->
-<!--        <property name="javax.jdo.option.ConnectionDriverName" value="com.mysql.jdbc.Driver"/> -->
-<!--        <property name="javax.jdo.option.ConnectionUserName" value="root"/> -->
-<!--        <property name="javax.jdo.option.ConnectionPassword" value="root"/> -->
+            <!--        <property name="javax.jdo.option.ConnectionURL" value="jdbc:mysql:///nucleus"/> -->
+            <!--        <property name="javax.jdo.option.ConnectionDriverName" value="com.mysql.jdbc.Driver"/> -->
+            <!--        <property name="javax.jdo.option.ConnectionUserName" value="root"/> -->
+            <!--        <property name="javax.jdo.option.ConnectionPassword" value="root"/> -->
 
-			<!--  Second level cache is controlled enabled/disabled programmatically by the tests -->
-            <!-- <property name="datanucleus.cache.level2.type" value="none" /> --> 
-            
+            <!--  Second level cache is controlled enabled/disabled programmatically by the tests -->
+            <!-- <property name="datanucleus.cache.level2.type" value="none" /> -->
+
             <property name="datanucleus.schema.autoCreateAll" value="true"/>
-            
-            <property name="javax.jdo.option.RetainValues" value="true" />
-            
-            <property name="datanucleus.Optimistic" value="true" /> 
-            <property name="datanucleus.persistenceByReachabilityAtCommit" value="false" />
-            
-            <property name="javax.jdo.option.NontransactionalRead" value="false" />
-            <property name="javax.jdo.option.NontransactionalWrite" value="false" />
-            
-            <!-- Allow deletes so we can test 2nd level cache --> 
+
+            <property name="javax.jdo.option.RetainValues" value="true"/>
+
+            <property name="datanucleus.Optimistic" value="true"/>
+            <property name="datanucleus.persistenceByReachabilityAtCommit" value="false"/>
+
+            <property name="javax.jdo.option.NontransactionalRead" value="false"/>
+            <property name="javax.jdo.option.NontransactionalWrite" value="false"/>
+
+            <!-- Allow deletes so we can test 2nd level cache -->
             <property name="datanucleus.query.sql.allowAll" value="true"/>
-            
+
             <property name="datanucleus.manageRelationships" value="true"/>
             <property name="datanucleus.manageRelationshipsChecks" value="true"/>
-            
+
             <property name="datanucleus.metadata.supportORM" value="false"/>
             <property name="datanucleus.metadata.defaultNullable" value="false"/>
         </properties>
-        
+
     </persistence-unit>
 
 </persistence>
