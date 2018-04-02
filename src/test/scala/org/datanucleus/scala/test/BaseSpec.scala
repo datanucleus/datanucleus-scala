@@ -20,6 +20,7 @@ import javax.jdo.PersistenceManager
 abstract class BaseSpec extends org.scalatest.FreeSpec
   with BeforeAndAfterEach
   with OptionValues
+  with RandomUtils
   with Tolerance {
 
   var currentPm: PersistenceManager = _
