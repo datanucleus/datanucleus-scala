@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>datanucleus-scala</artifactId>
-    <version>5.0.3-SNAPSHOT</version>
+    <version>5.2.0-m1-SNAPSHOT</version>
 
     <name>DataNucleus Scala plugin</name>
     <description>Specific support for Scala</description>
@@ -24,9 +24,9 @@
         <encoding>UTF-8</encoding>
         <scala.version>2.11</scala.version>
         <scala.minor.version>7</scala.minor.version>
-        <dn.core.version>5.0.0-m1</dn.core.version>
-        <dn.api.jdo.version>5.0.0-m1</dn.api.jdo.version>
-        <dn.rdbms.version>5.0.0-m1</dn.rdbms.version>
+        <dn.core.version>5.2.0-m1-SNAPSHOT</dn.core.version>
+        <dn.api.jdo.version>5.0.0-release</dn.api.jdo.version>
+        <dn.rdbms.version>5.2.0-m1-SNAPSHOT</dn.rdbms.version>
     </properties>
 
     <build>
