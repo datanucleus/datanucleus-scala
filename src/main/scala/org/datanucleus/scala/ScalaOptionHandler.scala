@@ -10,9 +10,8 @@ import org.datanucleus.enhancement.Persistable
 import org.datanucleus.enhancer.EnhancementHelper
 import javax.jdo.JDOHelper
 
-class ScalaOptionHandler
-    extends CollectionHandler[Option[Object]] {
-
+class ScalaOptionHandler extends CollectionHandler[Option[Object]] 
+{
   var _clr: ClassLoaderResolver = _
   var _prm: ClassLoader = _
 
@@ -20,18 +19,20 @@ class ScalaOptionHandler
   override def newContainer(mmd: AbstractMemberMetaData, elements: Object*): Option[Object] = Option(elements.head)
 
   override def getAdapter(option: Option[Object]): OptionAdapter = new OptionAdapter(option)
-  override def populateMetaData(clr: ClassLoaderResolver, primary: ClassLoader, mmd: AbstractMemberMetaData) = {
-
+  override def populateMetaData(clr: ClassLoaderResolver, primary: ClassLoader, mmd: AbstractMemberMetaData) = 
+  {
     _prm = primary
     _clr = clr
     mmd.getCollection.setSingleElement(true)
 
     // Get columns defined metadata - not visible
-    val columns = new AbstractMemberMetaData(mmd.getParent(), mmd) {
+    val columns = new AbstractMemberMetaData(mmd.getParent(), mmd) 
+    {
       def getColumns = columns;
     }.getColumns;
 
-    if (columns == null || columns.size() == 0) {
+    if (columns == null || columns.size() == 0) 
+    {
       // Option should allow nullable by default
       val colmd = new ColumnMetaData()
       colmd.setAllowsNull(true)
@@ -51,18 +52,17 @@ class ScalaOptionHandler
     * To workaround this problem we read the type name straight from
     * the ScalaSignature using scalap API.
     */
-  override protected def getElementType(mmd: AbstractMemberMetaData): String = {
-
+  override protected def getElementType(mmd: AbstractMemberMetaData): String = 
+  {
     val clazz = mmd.getMemberRepresented.getDeclaringClass
     ScalaSigReader.readFieldTypeName(mmd.getName, clazz, 0)
-
   }
 
-  override def isDefaultFetchGroup(clr: ClassLoaderResolver, typeMgr: TypeManager, mmd: AbstractMemberMetaData) = {
+  override def isDefaultFetchGroup(clr: ClassLoaderResolver, typeMgr: TypeManager, mmd: AbstractMemberMetaData) = 
+  {
     val elementTypeName = mmd.getCollection.getElementType
     val elementType = clr.classForName(elementTypeName);
 
     typeMgr.isDefaultFetchGroup(elementType)
   }
-
 }

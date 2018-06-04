@@ -7,7 +7,6 @@
         <java-type name="scala.None$" dfg="true" container-handler="org.datanucleus.scala.OptionHandler"/>
         
         <java-type name="scala.Product" dfg="true" />
-        
     </extension>
     
     <extension point="org.datanucleus.store.rdbms.java_mapping">
@@ -16,7 +15,6 @@
         <mapping java-type="scala.None$" mapping-class="org.datanucleus.store.rdbms.mapping.java.SingleCollectionMapping"/>
         
         <mapping java-type="scala.Product" mapping-class="org.datanucleus.scala.product.ProductMapping"/>
-        
     </extension>
     
 </plugin>

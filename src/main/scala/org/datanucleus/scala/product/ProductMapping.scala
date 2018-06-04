@@ -66,15 +66,15 @@ class ProductMapping extends SingleFieldMultiMapping {
 
   override def initialize(storeMgr: RDBMSStoreManager, tpe: String) = ???
 
-  override def getJavaTypeForDatastoreMapping(index: Int) = {
-    super.getJavaTypeForDatastoreMapping(index)
+  override def getJavaTypeForColumnMapping(index: Int) = {
+    super.getJavaTypeForColumnMapping(index)
   }
 
   override def setObject(ec: ExecutionContext, ps: PreparedStatement, exprIndex: Array[Int], value: Object) {
     val product = value.asInstanceOf[Product]
     val abs = mmd.getAbsoluteFieldNumber
     for(i <- 0 until productArity){
-      getDatastoreMapping(i).setObject(ps, exprIndex(i), product.productElement(i))
+      getColumnMapping(i).setObject(ps, exprIndex(i), product.productElement(i))
     }
   }
 
