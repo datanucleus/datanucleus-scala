@@ -153,19 +153,19 @@
         <dependency>
             <groupId>org.datanucleus</groupId>
             <artifactId>datanucleus-core</artifactId>
-            <version>[${dn.core.version},)</version>
+            <version>[${dn.core.version}, )</version>
         </dependency>
 
         <dependency>
             <!-- For annotations goodies -->
             <groupId>org.datanucleus</groupId>
             <artifactId>datanucleus-api-jdo</artifactId>
-            <version>(${dn.api.jdo.version},)</version>
+            <version>(${dn.api.jdo.version}, )</version>
         </dependency>
         <dependency>
             <groupId>org.datanucleus</groupId>
             <artifactId>datanucleus-rdbms</artifactId>
-            <version>(${dn.rdbms.version},)</version>
+            <version>[${dn.rdbms.version}, )</version>
             <optional>true</optional>
         </dependency>
 
