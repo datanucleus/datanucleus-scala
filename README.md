@@ -10,6 +10,6 @@ This is built using Maven, by executing `mvn clean install` which installs the b
 
 __License__ : Apache 2 licensed  
 __Issue Tracker__ : http://github.com/datanucleus/datanucleus-scala/issues  
-__Download(Releases)__ : [Maven Central](http://central.maven.org/maven2/org/datanucleus/datanucleus-scala)  
-__Download(Nightly)__ : [Nightly Builds](http://www.datanucleus.org/downloads/maven2-nightly/org/datanucleus/datanucleus-scala)  
+__Download__ : [Maven Central](http://central.maven.org/maven2/org/datanucleus/datanucleus-scala)  
 __Dependencies__ : See file [pom.xml](pom.xml)  
+__Support__ : [DataNucleus Support Page](http://www.datanucleus.org/support.html)  
