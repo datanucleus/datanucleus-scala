@@ -4,6 +4,7 @@ DataNucleus specific support for language aspects of Scala.
 
 This is built using Maven, by executing `mvn clean install` which installs the built jar in your local Maven repository.
 
+*THIS IS NO LONGER MAINTAINED. PLEASE REGISTER TO HELP MAINTAIN IT*
 
 ## KeyFacts
 
